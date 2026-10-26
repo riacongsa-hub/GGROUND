@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>좌석 예약 — GGROUND</title>
+    <meta
+      name="description"
+      content="GGROUND의 PC, 콘솔, VR, 스트리밍 공간을 선택하고 좌석을 예약하세요."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="reservation.css" />
+    <script src="reservation.js" defer></script>
+  </head>
+  <body class="reservation-page">
+    <header class="header">
+      <a href="index.html#" aria-label="GGROUND 홈"
+        ><img src="assets/common/logo.png" alt="GGROUND" class="logo"
+      /></a>
+      <nav>
+        <a href="index.html#about">GGROUND 소개</a
+        ><a href="index.html#spaces">시설 안내</a
+        ><a href="index.html#programs">프로그램</a
+        ><a href="index.html#esports">e스포츠</a
+        ><a href="index.html#guide">이용 안내</a
+        ><a href="reservation.html">예약하기</a>
+      </nav>
+      <div class="header-tools">
+        <button aria-label="사이트 검색" id="search-open">
+          <img src="assets/common/figma/pc-imgRectangle15.png" alt="" /></button
+        ><a href="index.html#guide" aria-label="이용 안내"
+          ><img src="assets/common/figma/pc-imgRectangle16.png" alt="" /></a
+        ><a class="pill" href="reservation.html">예약하기 ↗</a>
+      </div>
+    </header>
+    <main class="reservation-main">
+      <div class="reservation-inner">
+        <div class="reservation-heading">
+          <p>RESERVATION</p>
+          <h1>좌석 예약</h1>
+          <p>
+            GGROUND에서 원하는 공간을 선택하고, 특별한 게임 경험을 예약하세요.
+          </p>
+        </div>
+        <div
+          class="reservation-tabs"
+          role="tablist"
+          aria-label="예약할 공간"
+        ></div>
+        <div class="reservation-layout">
+          <section
+            class="reservation-map-panel"
+            id="zone-panel"
+            role="tabpanel"
+            aria-labelledby="zone-tab-0"
+          >
+            <div class="reservation-map-heading">
+              <img
+                id="zone-icon"
+                src="assets/reservation/icons8-my-computer-96 (1) 1.png"
+                alt=""
+              />
+              <h2 id="zone-name">PC 게임존</h2>
+              <p id="zone-description">
+                최신 사양의 게임 PC와 쾌적한 환경에서 게임을 즐겨보세요.
+              </p>
+            </div>
+            <div
+              class="reservation-map-scroll"
+              tabindex="0"
+              aria-label="좌석 배치도. 작은 화면에서는 좌우로 스크롤할 수 있습니다."
+            >
+              <div class="reservation-room" data-zone="pc">
+                <span class="room-wall wall-top" aria-hidden="true"></span>
+                <span class="room-wall wall-bottom" aria-hidden="true"></span>
+                <span class="room-wall wall-left" aria-hidden="true"></span>
+                <span class="room-wall wall-right" aria-hidden="true"></span>
+                <div
+                  class="reservation-seats"
+                  id="seat-map"
+                  role="group"
+                  aria-label="PC 게임존 좌석"
+                ></div>
+                <span class="room-brand" aria-hidden="true">GGROUND</span>
+                <span class="room-entrance"
+                  ><span aria-hidden="true">↑</span>입구</span
+                >
+              </div>
+            </div>
+            <div class="reservation-legend" aria-label="좌석 상태 안내">
+              <span
+                ><img
+                  src="assets/reservation/seat-chair.svg"
+                  alt=""
+                />이용가능</span
+              >
+              <span
+                ><img
+                  class="selected-chair"
+                  src="assets/reservation/seat-chair.svg"
+                  alt=""
+                />선택한좌석</span
+              >
+              <span><i aria-hidden="true">×</i>이용 중</span>
+            </div>
+          </section>
+          <aside
+            class="reservation-summary"
+            aria-labelledby="reservation-info-title"
+          >
+            <h2 id="reservation-info-title">
+              <img
+                src="assets/reservation/mobile-imgCalendar1.png"
+                alt=""
+              />예약 정보
+            </h2>
+            <form id="reservation-form">
+              <div class="reservation-field">
+                <label for="booking-date">이용 날짜</label>
+                <div class="reservation-input">
+                  <img
+                    src="assets/reservation/mobile-imgCalendar1.png"
+                    alt=""
+                  /><input id="booking-date" type="date" required />
+                </div>
+              </div>
+              <div class="reservation-field">
+                <label for="booking-time">이용 시간</label>
+                <div class="reservation-input">
+                  <img
+                    src="assets/reservation/mobile-imgClock150666091.png"
+                    alt=""
+                  /><select id="booking-time" required>
+                    <option value="10">2시간 (10:00 - 12:00)</option>
+                    <option value="12">2시간 (12:00 - 14:00)</option>
+                    <option value="14" selected>2시간 (14:00 - 16:00)</option>
+                    <option value="16">2시간 (16:00 - 18:00)</option>
+                    <option value="18">2시간 (18:00 - 20:00)</option>
+                    <option value="20">2시간 (20:00 - 22:00)</option>
+                  </select>
+                </div>
+              </div>
+              <div class="reservation-field">
+                <label for="booking-people">이용 인원</label>
+                <div class="reservation-input">
+                  <img
+                    src="assets/reservation/mobile-imgPeople1.png"
+                    alt=""
+                  /><select id="booking-people" required></select>
+                </div>
+              </div>
+              <section
+                class="reservation-selection"
+                aria-labelledby="selection-title"
+              >
+                <div class="selection-heading">
+                  <h3 id="selection-title">선택한 좌석</h3>
+                  <button type="button" id="reset-seats">초기화</button>
+                </div>
+                <div id="selected-seats"></div>
+                <p
+                  id="selection-announcement"
+                  class="reservation-sr-only"
+                  role="status"
+                  aria-live="polite"
+                ></p>
+              </section>
+              <div class="reservation-price">
+                <div>
+                  <h3>이용 요금</h3>
+                  <p id="rate-description">PC 게임존 1,500원 / 1시간</p>
+                </div>
+                <strong id="total-price">0원</strong>
+              </div>
+              <p id="reservation-error" role="alert"></p>
+              <button class="reservation-submit" type="submit">
+                <img
+                  src="assets/reservation/mobile-imgCalendar1.png"
+                  alt=""
+                />예약하기
+              </button>
+            </form>
+          </aside>
+        </div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="wrap footer-content">
+        <div>
+          <b>만나기 안내</b><a href="index.html#about">GGROUND 소개</a
+          ><a href="index.html#spaces">시설 안내</a>
+        </div>
+        <div>
+          <b>서비스</b><a href="index.html#guide">이용 안내</a
+          ><a href="reservation.html">공간 예약</a>
+        </div>
+        <div>
+          <b>고객 지원</b><a href="index.html#news">공지사항</a
+          ><a href="index.html#programs">프로그램 안내</a>
+        </div>
+        <div>
+          <b>운영 안내</b>
+          <p>
+            운영시간 10:00 – 22:00<br />매주 월요일 휴관<br />문의 · 현장 안내
+            데스크
+          </p>
+        </div>
+        <small>© 2026 GGROUND. ALL RIGHTS RESERVED.</small
+        ><a href="index.html#"
+          ><img src="assets/common/footer_logo.png" alt="GGROUND"
+        /></a>
+      </div>
+    </footer>
+    <dialog id="reservation-dialog" class="reservation-dialog">
+      <button type="button" class="dialog-close" aria-label="닫기">×</button>
+      <h2>예약 내용 확인</h2>
+      <p id="reservation-result"></p>
+      <p class="reservation-demo-note">
+        예약 접수 서비스 연결 전입니다. 현재 선택한 내용을 확인할 수 있으며 실제
+        예약은 접수되지 않습니다.
+      </p>
+      <button type="button" class="reservation-submit dialog-close">
+        확인
+      </button>
+    </dialog>
+    <dialog id="search-dialog">
+      <button class="dialog-close" aria-label="검색 닫기">×</button>
+      <h2>어떤 공간을 찾으세요?</h2>
+      <input
+        id="search-input"
+        type="search"
+        placeholder="공간, 프로그램, 이용 안내 검색"
+        aria-label="검색어"
+      />
+      <div id="search-results"></div>
+    </dialog>
+  </body>
+</html>
